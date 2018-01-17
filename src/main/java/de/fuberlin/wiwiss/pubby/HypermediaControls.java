@@ -105,18 +105,30 @@ public class HypermediaControls {
 			return getPageURL();
 		}
 	}
-	
+
 	/**
 	 * @return A description of the resource that allows interrogation of the data
 	 */
 	public ResourceDescription getResourceDescription() {
+		return getResourceDescription(true);
+	}
+
+	/**
+	 * @param applyHighDegreeCutoff
+	 * @return A description of the resource that allows interrogation of the data
+	 */
+	public ResourceDescription getResourceDescription(boolean applyHighDegreeCutoff) {
 		DataSource source = config.getDataSource();
 		Model model = source.describeResource(absoluteIRI);
 		if (model.isEmpty()) return null;
-		return new ResourceDescription(this, model, 
-				source.getHighIndegreeProperties(absoluteIRI), 
-				source.getHighOutdegreeProperties(absoluteIRI), 
-				config);
+		if (applyHighDegreeCutoff) {
+			return new ResourceDescription(this, model,
+					source.getHighIndegreeProperties(absoluteIRI),
+					source.getHighOutdegreeProperties(absoluteIRI),
+					config);
+		} else {
+			return new ResourceDescription(this, model, config);
+		}
 	}
 	
 	/**

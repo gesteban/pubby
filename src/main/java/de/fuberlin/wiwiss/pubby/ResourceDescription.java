@@ -36,7 +36,7 @@ import de.fuberlin.wiwiss.pubby.VocabularyStore.CachedPropertyCollection;
  * TODO: Sort out who constructs these. Perhaps only the data source and this class itself should?
  */
 public class ResourceDescription {
-	private final static int HIGH_DEGREE_CUTOFF = 10;
+	private final static int HIGH_DEGREE_CUTOFF = 30;
 
 	private final HypermediaControls hypermediaResource;
 	private final Model model;

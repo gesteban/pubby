@@ -30,7 +30,7 @@ public class DataURLServlet extends BaseServlet {
 		HypermediaControls controller = config.getControls(relativeURI, false);
 
 		ResourceDescription description = controller == null ? 
-				null : controller.getResourceDescription();
+				null : controller.getResourceDescription(false);
 		// Check if resource exists in dataset
 		if (description == null) {
 			response.setStatus(404);
